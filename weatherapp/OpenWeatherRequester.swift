@@ -25,12 +25,18 @@ struct OpenWeatherRequester {
         let lat: Double
         let long: Double
     }
+    
+    enum Units: String {
+        case metric
+        case imperial
+    }
 
-    func getWeather(coordinate: Coordinate) async throws -> WeatherResponse? {
+    func getWeather(coordinate: Coordinate, unit: Units = .metric) async throws -> WeatherResponse? {
         let path = "/data/2.5/weather"
         let params = [
             "lat": "\(coordinate.lat)",
             "lon": "\(coordinate.long)",
+            "units": unit.rawValue,
             "appid": appid
         ]
         if let url = makeURL(path: path, params: params) {

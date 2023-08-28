@@ -7,7 +7,12 @@
 
 import Foundation
 
-final class GetActualLocationWeather {
+protocol GetActualLocationWeatherProtocol {
+    var eventUpdate: (GetWeatherEvent) -> Void { get set }
+    func fetch(unit: Units)
+}
+
+final class GetActualLocationWeather: GetActualLocationWeatherProtocol {
     var eventUpdate: (GetWeatherEvent) -> Void = { _ in }
 
     private var unit: Units = .metric

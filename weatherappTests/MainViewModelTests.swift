@@ -19,15 +19,18 @@ final class MainViewModelTests: XCTestCase {
     func testViewAppear() {
         var actualTemperatureValue = ""
         var actualNameValue = ""
+        var actualLoading: [Bool] = []
 
         let locationWeatherSpy = GetActualLocationWeatherSpy()
         let sut = MainViewModel(getWeather: locationWeatherSpy)
         sut.temperature.sink(receiveValue: { value in actualTemperatureValue = value }).store(in: &subscribers)
         sut.name.sink(receiveValue: { value in actualNameValue = value }).store(in: &subscribers)
+        sut.showLoading.sink(receiveValue: { value in actualLoading.append(value) }).store(in: &subscribers)
 
         sut.viewAppear(selectedUnit: .imperial)
         locationWeatherSpy.eventUpdate(.actualWeather(.init(name: "any-name", temperature: 77, unit: .metric)))
 
+        XCTAssertEqual(actualLoading, [true, false])
         XCTAssertEqual(actualTemperatureValue, "77.0")
         XCTAssertEqual(actualNameValue, "any-name")
         XCTAssertTrue(locationWeatherSpy.fetchCalled)

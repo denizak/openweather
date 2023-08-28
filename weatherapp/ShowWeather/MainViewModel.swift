@@ -29,6 +29,11 @@ final class MainViewModel {
     var showWeatherUnavailable: AnyPublisher<Bool, Never> {
         showWeatherUnavailableSubject.eraseToAnyPublisher()
     }
+    
+    private let showLoadingSubject = PassthroughSubject<Bool, Never>()
+    var showLoading: AnyPublisher<Bool, Never> {
+        showLoadingSubject.eraseToAnyPublisher()
+    }
 
     private var getWeather: GetActualLocationWeatherProtocol
     init(getWeather: GetActualLocationWeatherProtocol) {
@@ -50,14 +55,17 @@ final class MainViewModel {
 
             self?.showWeatherUnavailableSubject.send(showError)
             self?.showEnableLocationPermissionSubject.send(showEnableLocationPermission)
+            self?.showLoadingSubject.send(false)
         }
     }
 
     func viewAppear(selectedUnit: Units = .metric) {
+        showLoadingSubject.send(true)
         getWeather.fetch(unit: selectedUnit)
     }
 
     func update(unit: Units) {
+        showLoadingSubject.send(true)
         getWeather.fetch(unit: unit)
     }
 }

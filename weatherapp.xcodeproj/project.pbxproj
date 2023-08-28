@@ -13,7 +13,6 @@
 		602549792A9B722E0013DDDE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 602549772A9B722E0013DDDE /* Main.storyboard */; };
 		6025497B2A9B72320013DDDE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6025497A2A9B72320013DDDE /* Assets.xcassets */; };
 		6025497E2A9B72320013DDDE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6025497C2A9B72320013DDDE /* LaunchScreen.storyboard */; };
-		602549932A9B72320013DDDE /* weatherappUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602549922A9B72320013DDDE /* weatherappUITests.swift */; };
 		602549952A9B72320013DDDE /* weatherappUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602549942A9B72320013DDDE /* weatherappUITestsLaunchTests.swift */; };
 		602549B02A9B77900013DDDE /* OpenWeatherRequester.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602549AF2A9B77900013DDDE /* OpenWeatherRequester.swift */; };
 		602549B22A9B77BC0013DDDE /* OpenWeatherRequesterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602549B12A9B77BC0013DDDE /* OpenWeatherRequesterTests.swift */; };
@@ -21,7 +20,6 @@
 		602549B82A9B8A3D0013DDDE /* LocationManagerWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602549B72A9B8A3D0013DDDE /* LocationManagerWrapper.swift */; };
 		602549BA2A9BD08D0013DDDE /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602549B92A9BD08D0013DDDE /* LocationManager.swift */; };
 		602549BC2A9BD42F0013DDDE /* LocationManagerWrapperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602549BB2A9BD42F0013DDDE /* LocationManagerWrapperTests.swift */; };
-		602549BE2A9BDC460013DDDE /* CLLocationManagerDelegateImplTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602549BD2A9BDC460013DDDE /* CLLocationManagerDelegateImplTests.swift */; };
 		606AF8882A9CEBC2002AE416 /* GetActualLocationWeather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606AF8872A9CEBC2002AE416 /* GetActualLocationWeather.swift */; };
 		606AF88A2A9CF6F5002AE416 /* GetActualLocationWeather+Init.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606AF8892A9CF6F5002AE416 /* GetActualLocationWeather+Init.swift */; };
 		606AF88C2A9CFC68002AE416 /* GetActualLocationWeatherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606AF88B2A9CFC68002AE416 /* GetActualLocationWeatherTests.swift */; };
@@ -65,7 +63,6 @@
 		6025497F2A9B72320013DDDE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		602549842A9B72320013DDDE /* weatherappTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = weatherappTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6025498E2A9B72320013DDDE /* weatherappUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = weatherappUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		602549922A9B72320013DDDE /* weatherappUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = weatherappUITests.swift; sourceTree = "<group>"; };
 		602549942A9B72320013DDDE /* weatherappUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = weatherappUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		602549A52A9B734A0013DDDE /* weatherappIntegrationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = weatherappIntegrationTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		602549AE2A9B74F90013DDDE /* weatherapp.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = weatherapp.xctestplan; sourceTree = "<group>"; };
@@ -75,7 +72,6 @@
 		602549B72A9B8A3D0013DDDE /* LocationManagerWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManagerWrapper.swift; sourceTree = "<group>"; };
 		602549B92A9BD08D0013DDDE /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		602549BB2A9BD42F0013DDDE /* LocationManagerWrapperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManagerWrapperTests.swift; sourceTree = "<group>"; };
-		602549BD2A9BDC460013DDDE /* CLLocationManagerDelegateImplTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLLocationManagerDelegateImplTests.swift; sourceTree = "<group>"; };
 		606AF8872A9CEBC2002AE416 /* GetActualLocationWeather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetActualLocationWeather.swift; sourceTree = "<group>"; };
 		606AF8892A9CF6F5002AE416 /* GetActualLocationWeather+Init.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GetActualLocationWeather+Init.swift"; sourceTree = "<group>"; };
 		606AF88B2A9CFC68002AE416 /* GetActualLocationWeatherTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetActualLocationWeatherTests.swift; sourceTree = "<group>"; };
@@ -160,7 +156,6 @@
 			isa = PBXGroup;
 			children = (
 				602549BB2A9BD42F0013DDDE /* LocationManagerWrapperTests.swift */,
-				602549BD2A9BDC460013DDDE /* CLLocationManagerDelegateImplTests.swift */,
 				606AF88B2A9CFC68002AE416 /* GetActualLocationWeatherTests.swift */,
 				606AF88F2A9D0B5D002AE416 /* MainViewModelTests.swift */,
 			);
@@ -170,7 +165,6 @@
 		602549912A9B72320013DDDE /* weatherappUITests */ = {
 			isa = PBXGroup;
 			children = (
-				602549922A9B72320013DDDE /* weatherappUITests.swift */,
 				602549942A9B72320013DDDE /* weatherappUITestsLaunchTests.swift */,
 			);
 			path = weatherappUITests;
@@ -384,7 +378,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				602549BE2A9BDC460013DDDE /* CLLocationManagerDelegateImplTests.swift in Sources */,
 				606AF88C2A9CFC68002AE416 /* GetActualLocationWeatherTests.swift in Sources */,
 				602549BC2A9BD42F0013DDDE /* LocationManagerWrapperTests.swift in Sources */,
 				606AF8902A9D0B5D002AE416 /* MainViewModelTests.swift in Sources */,
@@ -395,7 +388,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				602549932A9B72320013DDDE /* weatherappUITests.swift in Sources */,
 				602549952A9B72320013DDDE /* weatherappUITestsLaunchTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

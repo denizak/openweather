@@ -9,7 +9,6 @@
     }
   ],
   "defaultOptions" : {
-    "codeCoverage" : false,
     "targetForVariableExpansion" : {
       "containerPath" : "container:weatherapp.xcodeproj",
       "identifier" : "6025496D2A9B722E0013DDDE",

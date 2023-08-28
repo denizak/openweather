@@ -11,7 +11,7 @@ import CoreLocation
 protocol LocationManager {
     var locationManagerDelegate: LocationManagerDelegate? { get set }
     var authorizationStatus: CLAuthorizationStatus { get }
-    func startMonitoringSignificantLocationChanges()
+    func startUpdatingLocation()
     func requestWhenInUseAuthorization()
     func requestLocation()
     func stopUpdatingLocation()
@@ -19,9 +19,9 @@ protocol LocationManager {
 
 protocol LocationManagerDelegate: AnyObject {
     var event: LocationEvent? { get set }
-    func locationManagerDidChangeAuthorization(_ manager: LocationManager)
-    func locationManager(_ manager: LocationManager, didUpdateLocations locations: [CLLocation])
-    func locationManager(_ manager: LocationManager, didFailWithError error: Error)
+    func locationManagerDidChangeAuthorization()
+    func locationManager(didUpdateLocations locations: [CLLocation])
+    func locationManager(didFailWithError error: Error)
 }
 
 extension CLLocationManager: LocationManager {

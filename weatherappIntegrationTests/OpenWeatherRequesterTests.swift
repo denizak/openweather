@@ -12,7 +12,7 @@ final class OpenWeatherRequesterTests: XCTestCase {
     
     func testGetWeatherWithCoordinate() async throws {
         let sut = OpenWeatherRequester()
-        let coordinate = OpenWeatherRequester.Coordinate(lat: 52.520008, long: 13.404954)
+        let coordinate = Coordinate(lat: 52.520008, long: 13.404954)
         
         let response = try await sut.getWeather(coordinate: coordinate)
         

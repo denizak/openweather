@@ -21,16 +21,6 @@ struct OpenWeatherRequester {
     private let appid = "8873455a2cc5af0232f9657dc50c4083"
     private let decoder = JSONDecoder()
 
-    struct Coordinate {
-        let lat: Double
-        let long: Double
-    }
-    
-    enum Units: String {
-        case metric
-        case imperial
-    }
-
     func getWeather(coordinate: Coordinate, unit: Units = .metric) async throws -> WeatherResponse? {
         let path = "/data/2.5/weather"
         let params = [

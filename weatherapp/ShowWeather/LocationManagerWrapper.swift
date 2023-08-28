@@ -8,15 +8,6 @@
 import Foundation
 import CoreLocation
 
-enum LocationError {
-    case userDeniedLocationService
-}
-
-protocol LocationEvent: AnyObject {
-    func locationUpdated(latitude: Double, longitude: Double)
-    func locationError(error: LocationError)
-}
-
 final class LocationManagerWrapper {
     private var locationManager: LocationManager
     private let managerDelegate: LocationManagerDelegate

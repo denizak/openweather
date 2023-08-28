@@ -22,6 +22,9 @@
 		602549BA2A9BD08D0013DDDE /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602549B92A9BD08D0013DDDE /* LocationManager.swift */; };
 		602549BC2A9BD42F0013DDDE /* LocationManagerWrapperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602549BB2A9BD42F0013DDDE /* LocationManagerWrapperTests.swift */; };
 		602549BE2A9BDC460013DDDE /* CLLocationManagerDelegateImplTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602549BD2A9BDC460013DDDE /* CLLocationManagerDelegateImplTests.swift */; };
+		606AF8882A9CEBC2002AE416 /* GetActualLocationWeather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606AF8872A9CEBC2002AE416 /* GetActualLocationWeather.swift */; };
+		606AF88A2A9CF6F5002AE416 /* GetActualLocationWeather+Init.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606AF8892A9CF6F5002AE416 /* GetActualLocationWeather+Init.swift */; };
+		606AF88C2A9CFC68002AE416 /* GetActualLocationWeatherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606AF88B2A9CFC68002AE416 /* GetActualLocationWeatherTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,6 +73,9 @@
 		602549B92A9BD08D0013DDDE /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		602549BB2A9BD42F0013DDDE /* LocationManagerWrapperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManagerWrapperTests.swift; sourceTree = "<group>"; };
 		602549BD2A9BDC460013DDDE /* CLLocationManagerDelegateImplTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLLocationManagerDelegateImplTests.swift; sourceTree = "<group>"; };
+		606AF8872A9CEBC2002AE416 /* GetActualLocationWeather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetActualLocationWeather.swift; sourceTree = "<group>"; };
+		606AF8892A9CF6F5002AE416 /* GetActualLocationWeather+Init.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GetActualLocationWeather+Init.swift"; sourceTree = "<group>"; };
+		606AF88B2A9CFC68002AE416 /* GetActualLocationWeatherTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetActualLocationWeatherTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,6 +155,7 @@
 			children = (
 				602549BB2A9BD42F0013DDDE /* LocationManagerWrapperTests.swift */,
 				602549BD2A9BDC460013DDDE /* CLLocationManagerDelegateImplTests.swift */,
+				606AF88B2A9CFC68002AE416 /* GetActualLocationWeatherTests.swift */,
 			);
 			path = weatherappTests;
 			sourceTree = "<group>";
@@ -176,6 +183,8 @@
 				602549AF2A9B77900013DDDE /* OpenWeatherRequester.swift */,
 				602549B72A9B8A3D0013DDDE /* LocationManagerWrapper.swift */,
 				602549B92A9BD08D0013DDDE /* LocationManager.swift */,
+				606AF8872A9CEBC2002AE416 /* GetActualLocationWeather.swift */,
+				606AF8892A9CF6F5002AE416 /* GetActualLocationWeather+Init.swift */,
 			);
 			path = ShowWeather;
 			sourceTree = "<group>";
@@ -353,6 +362,8 @@
 				602549722A9B722E0013DDDE /* AppDelegate.swift in Sources */,
 				602549B82A9B8A3D0013DDDE /* LocationManagerWrapper.swift in Sources */,
 				602549742A9B722E0013DDDE /* SceneDelegate.swift in Sources */,
+				606AF88A2A9CF6F5002AE416 /* GetActualLocationWeather+Init.swift in Sources */,
+				606AF8882A9CEBC2002AE416 /* GetActualLocationWeather.swift in Sources */,
 				602549BA2A9BD08D0013DDDE /* LocationManager.swift in Sources */,
 				602549B02A9B77900013DDDE /* OpenWeatherRequester.swift in Sources */,
 			);
@@ -363,6 +374,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				602549BE2A9BDC460013DDDE /* CLLocationManagerDelegateImplTests.swift in Sources */,
+				606AF88C2A9CFC68002AE416 /* GetActualLocationWeatherTests.swift in Sources */,
 				602549BC2A9BD42F0013DDDE /* LocationManagerWrapperTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

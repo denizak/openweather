@@ -14,6 +14,7 @@ final class GetActualLocationWeatherTests: XCTestCase {
         let expectEventUpdate = expectation(description: #function)
         let sut = GetActualLocationWeather(
             fetchLocation: { $0.locationUpdated(latitude: 101, longitude: 202) },
+            lastLocation: { nil },
             requestWeatherInfo: { coordinate, unit in  .init(name: "name", temperature: 47, unit: unit) })
 
         var actualWeatherInfo: WeatherInfo?
@@ -36,6 +37,7 @@ final class GetActualLocationWeatherTests: XCTestCase {
     func testFetch_onReceived_unableToLocateUser() {
         let sut = GetActualLocationWeather(
             fetchLocation: { $0.locationError(error: .userDeniedLocationService) },
+            lastLocation: { nil },
             requestWeatherInfo: { _, _ in nil })
 
         var actualEvent: GetWeatherEvent?
@@ -56,6 +58,7 @@ final class GetActualLocationWeatherTests: XCTestCase {
         let expectEventUpdate = expectation(description: #function)
         let sut = GetActualLocationWeather(
             fetchLocation: { $0.locationUpdated(latitude: 1, longitude: 1) },
+            lastLocation: { nil },
             requestWeatherInfo: { _, _ in throw GetWeatherEvent.WeatherError.missingData })
 
         var actualWeatherError: GetWeatherEvent.WeatherError?
@@ -73,5 +76,34 @@ final class GetActualLocationWeatherTests: XCTestCase {
 
         wait(for: [expectEventUpdate])
         XCTAssertEqual(actualWeatherError, .missingData)
+    }
+
+    func testFetch_onLocationExists() {
+        let expectEventUpdate = expectation(description: #function)
+        var fetchLocationCalled = false
+        let sut = GetActualLocationWeather(
+            fetchLocation: {
+                fetchLocationCalled = true
+                return $0.locationUpdated(latitude: 101, longitude: 202)
+            },
+            lastLocation: { .init(lat: 101, long: 202) },
+            requestWeatherInfo: { coordinate, unit in  .init(name: "name", temperature: 47, unit: unit) })
+
+        var actualWeatherInfo: WeatherInfo?
+        sut.eventUpdate = { event in
+            if case .actualWeather(let info) = event {
+                actualWeatherInfo = info
+            } else {
+                XCTFail("should receive .actualWeather")
+            }
+
+            expectEventUpdate.fulfill()
+        }
+
+        sut.fetch(unit: .metric)
+
+        wait(for: [expectEventUpdate])
+        XCTAssertFalse(fetchLocationCalled)
+        XCTAssertEqual(actualWeatherInfo, .init(name: "name", temperature: 47, unit: .metric))
     }
 }

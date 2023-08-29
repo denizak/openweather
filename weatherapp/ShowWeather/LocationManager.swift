@@ -11,6 +11,7 @@ import CoreLocation
 protocol LocationManager {
     var locationManagerDelegate: LocationManagerDelegate? { get set }
     var authorizationStatus: CLAuthorizationStatus { get }
+    var location: CLLocation? { get }
     func startUpdatingLocation()
     func requestWhenInUseAuthorization()
     func requestLocation()

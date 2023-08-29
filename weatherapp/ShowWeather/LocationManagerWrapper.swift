@@ -23,6 +23,15 @@ final class LocationManagerWrapper: NSObject, LocationManagerDelegate {
         locationManager.startUpdatingLocation()
     }
 
+    func getLocation() -> Coordinate? {
+        if let location = locationManager.location {
+            return .init(lat: location.coordinate.latitude, long: location.coordinate.longitude)
+        } else {
+            locationManager.requestLocation()
+            return nil
+        }
+    }
+
     // MARK: - LocationManagerDelegate
 
     weak var event: LocationEvent?

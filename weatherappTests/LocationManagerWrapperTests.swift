@@ -85,6 +85,25 @@ final class LocationManagerWrapperTests: XCTestCase {
         XCTAssertEqual(event.actualLocationError, .userDeniedLocationService)
     }
 
+    func testGetLocation() {
+        let (sut, locationManager) = makeSUT()
+        locationManager.location = .init(latitude: 11, longitude: 22)
+
+        let coordinate = sut.getLocation()
+
+        XCTAssertEqual(coordinate, .init(lat: 11, long: 22))
+    }
+
+    func testGetLocation_onLocationNil() {
+        let (sut, locationManager) = makeSUT()
+        locationManager.location = nil
+
+        let coordinate = sut.getLocation()
+
+        XCTAssertNil(coordinate)
+        XCTAssertTrue(locationManager.requestLocationCalled)
+    }
+
     private func makeSUT(status: CLAuthorizationStatus = .notDetermined) -> (LocationManagerWrapper, LocationManagerSpy) {
         let locationManager = LocationManagerSpy()
         locationManager.authorizationStatusStubbed = status
@@ -116,6 +135,7 @@ private final class LocationEventSpy: LocationEvent {
 }
 
 private final class LocationManagerSpy: LocationManager {
+    var location: CLLocation?
     var locationManagerDelegate: LocationManagerDelegate?
 
     var authorizationStatusStubbed: CLAuthorizationStatus?

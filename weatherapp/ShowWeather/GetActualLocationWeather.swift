@@ -18,24 +18,30 @@ final class GetActualLocationWeather: GetActualLocationWeatherProtocol {
     private var unit: Units = .metric
 
     private var fetchLocation: (LocationEvent) -> Void
+    private var lastLocation: () -> Coordinate?
     private var requestWeatherInfo: (Coordinate, Units) async throws -> WeatherInfo?
 
-    init(fetchLocation: @escaping (LocationEvent) -> Void, requestWeatherInfo: @escaping (Coordinate, Units) async throws -> WeatherInfo?) {
+    init(fetchLocation: @escaping (LocationEvent) -> Void,
+         lastLocation: @escaping () -> Coordinate?,
+         requestWeatherInfo: @escaping (Coordinate, Units) async throws -> WeatherInfo?) {
         self.fetchLocation = fetchLocation
+        self.lastLocation = lastLocation
         self.requestWeatherInfo = requestWeatherInfo
     }
 
     func fetch(unit: Units) {
         self.unit = unit
-        fetchLocation(self)
+        if let location = lastLocation() {
+            requestWeatherInfo(coordinate: location, unit: unit)
+        } else {
+            fetchLocation(self)
+        }
     }
-}
 
-extension GetActualLocationWeather: LocationEvent {
-    func locationUpdated(latitude: Double, longitude: Double) {
+    private func requestWeatherInfo(coordinate: Coordinate, unit: Units) {
         Task {
             do {
-                if let weatherInfo = try await requestWeatherInfo(.init(lat: latitude, long: longitude), unit) {
+                if let weatherInfo = try await requestWeatherInfo(coordinate, unit) {
                     eventUpdate(.actualWeather(weatherInfo))
                 } else {
                     eventUpdate(.getWeatherError(GetWeatherEvent.WeatherError.missingData))
@@ -45,6 +51,12 @@ extension GetActualLocationWeather: LocationEvent {
                 print(error)
             }
         }
+    }
+}
+
+extension GetActualLocationWeather: LocationEvent {
+    func locationUpdated(latitude: Double, longitude: Double) {
+        requestWeatherInfo(coordinate: .init(lat: latitude, long: longitude), unit: self.unit)
     }
 
     func locationError(error: LocationError) {
@@ -69,7 +81,7 @@ enum GetWeatherEvent: Equatable {
     case getWeatherError(WeatherError)
 }
 
-struct Coordinate {
+struct Coordinate: Equatable {
     let lat: Double
     let long: Double
 }

@@ -62,15 +62,13 @@ final class MainViewModelTests: XCTestCase {
     }
 
     func testUpdate() {
-        func testViewAppear() {
-            let locationWeatherSpy = GetActualLocationWeatherSpy()
-            let sut = MainViewModel(getWeather: locationWeatherSpy)
+        let locationWeatherSpy = GetActualLocationWeatherSpy()
+        let sut = MainViewModel(getWeather: locationWeatherSpy)
 
-            sut.update(unit: .imperial)
+        sut.update(unit: .imperial)
 
-            XCTAssertTrue(locationWeatherSpy.fetchCalled)
-            XCTAssertEqual(locationWeatherSpy.actualUnit, .imperial)
-        }
+        XCTAssertTrue(locationWeatherSpy.fetchCalled)
+        XCTAssertEqual(locationWeatherSpy.actualUnit, .imperial)
     }
 
 }

@@ -14,6 +14,8 @@ extension GetActualLocationWeather {
 
         return .init(fetchLocation: { event in
             locationManager.start(with: event)
+        }, lastLocation: {
+            locationManager.getLocation()
         }, requestWeatherInfo: { coordinate, unit in
             let response = try await openWeatherRequester.getWeather(coordinate: coordinate, unit: unit)
             return response?.toWeatherInfo(unit: unit)

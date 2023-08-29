@@ -108,6 +108,8 @@ class ViewController: UIViewController {
 
         setUpView()
         bindViewModel()
+
+        viewModel.viewLoad()
     }
     
     private func setUpView() {
@@ -178,16 +180,11 @@ class ViewController: UIViewController {
     @objc
     private func showSeachView(_ sender: UIBarButtonItem) {
         let viewController = SearchViewController()
-        viewController.onSelectLocation = { location in
-
+        viewController.onSelectLocation = { [unowned self] location in
+            self.navigationController?.popViewController(animated: true)
+            self.viewModel.update(location: location, unit: unitSelector.selectedUnit)
         }
         navigationController?.pushViewController(viewController, animated: true)
-    }
-
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-
-        viewModel.viewAppear()
     }
 }
 

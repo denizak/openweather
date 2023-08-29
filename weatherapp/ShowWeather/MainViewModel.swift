@@ -15,9 +15,9 @@ final class MainViewModel {
         temperatureSubject.eraseToAnyPublisher()
     }
 
-    private let nameSubject = PassthroughSubject<String, Never>()
+    private let citySubject = PassthroughSubject<String, Never>()
     var name: AnyPublisher<String, Never> {
-        nameSubject.eraseToAnyPublisher()
+        citySubject.eraseToAnyPublisher()
     }
 
     private let showEnableLocationPermissionSubject = PassthroughSubject<Bool, Never>()
@@ -35,6 +35,9 @@ final class MainViewModel {
         showLoadingSubject.eraseToAnyPublisher()
     }
 
+    private var location: Location?
+    private var unit: Units = .metric
+
     private var getWeather: GetActualLocationWeatherProtocol
     init(getWeather: GetActualLocationWeatherProtocol) {
         self.getWeather = getWeather
@@ -44,8 +47,9 @@ final class MainViewModel {
 
             switch event {
             case .actualWeather(let info):
+                self?.location = info.toLocation()
                 self?.temperatureSubject.send("\(info.temperature)")
-                self?.nameSubject.send("\(info.name)")
+                self?.citySubject.send("\(info.city)")
             case .getWeatherError(let error):
                 print(error)
                 showError = true
@@ -59,13 +63,34 @@ final class MainViewModel {
         }
     }
 
-    func viewAppear(selectedUnit: Units = .metric) {
-        showLoadingSubject.send(true)
-        getWeather.fetch(unit: selectedUnit)
+    func viewLoad() {
+        updateWeather()
+    }
+
+    func update(location: Location, unit: Units) {
+        self.location = location
+        self.unit = unit
+        updateWeather()
     }
 
     func update(unit: Units) {
+        self.unit = unit
+        updateWeather()
+    }
+
+    private func updateWeather() {
         showLoadingSubject.send(true)
-        getWeather.fetch(unit: unit)
+        if let coordinate = location?.coordinate {
+            getWeather.fetch(unit: unit, coordinate: coordinate)
+        } else {
+            getWeather.fetch(unit: unit)
+        }
+
+    }
+}
+
+extension WeatherInfo {
+    func toLocation() -> Location {
+        .init(city: city, state: nil, country: country, coordinate: coordinate)
     }
 }

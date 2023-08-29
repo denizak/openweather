@@ -25,6 +25,6 @@ extension GetActualLocationWeather {
 
 extension WeatherResponse {
     func toWeatherInfo(unit: Units) -> WeatherInfo {
-        .init(name: name, temperature: main.temp, unit: unit)
+        .init(city: name, country: sys.country, temperature: main.temp, unit: unit, coordinate: .init(lat: coord.lat, long: coord.lon))
     }
 }

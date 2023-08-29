@@ -10,6 +10,7 @@ import Foundation
 protocol GetActualLocationWeatherProtocol {
     var eventUpdate: (GetWeatherEvent) -> Void { get set }
     func fetch(unit: Units)
+    func fetch(unit: Units, coordinate: Coordinate?)
 }
 
 final class GetActualLocationWeather: GetActualLocationWeatherProtocol {
@@ -30,8 +31,14 @@ final class GetActualLocationWeather: GetActualLocationWeatherProtocol {
     }
 
     func fetch(unit: Units) {
+        fetch(unit: unit, coordinate: nil)
+    }
+
+    func fetch(unit: Units, coordinate: Coordinate?) {
         self.unit = unit
-        if let location = lastLocation() {
+
+        let weatherLocation = coordinate ?? lastLocation()
+        if let location = weatherLocation {
             requestWeatherInfo(coordinate: location, unit: unit)
         } else {
             fetchLocation(self)
@@ -66,9 +73,11 @@ extension GetActualLocationWeather: LocationEvent {
 }
 
 struct WeatherInfo: Equatable {
-    let name: String
+    let city: String
+    let country: String
     let temperature: Double
     let unit: Units
+    let coordinate: Coordinate
 }
 
 enum GetWeatherEvent: Equatable {
@@ -98,4 +107,11 @@ enum LocationError {
 protocol LocationEvent: AnyObject {
     func locationUpdated(latitude: Double, longitude: Double)
     func locationError(error: LocationError)
+}
+
+struct Location {
+    let city: String
+    let state: String?
+    let country: String
+    let coordinate: Coordinate
 }

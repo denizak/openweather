@@ -32,6 +32,8 @@
 		6090F21A2A9E939200DE39A8 /* SearchLocationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6090F2192A9E939200DE39A8 /* SearchLocationViewModel.swift */; };
 		6090F21C2A9E950E00DE39A8 /* SearchLocationViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6090F21B2A9E950E00DE39A8 /* SearchLocationViewModelTests.swift */; };
 		6090F21E2A9E998800DE39A8 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6090F21D2A9E998800DE39A8 /* SearchViewController.swift */; };
+		6090F2202A9E9F5B00DE39A8 /* SearchLocationViewModel+Init.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6090F21F2A9E9F5B00DE39A8 /* SearchLocationViewModel+Init.swift */; };
+		6090F2222A9F315600DE39A8 /* SearchTableDataSourceDelegateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6090F2212A9F315600DE39A8 /* SearchTableDataSourceDelegateTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -90,6 +92,8 @@
 		6090F2192A9E939200DE39A8 /* SearchLocationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchLocationViewModel.swift; sourceTree = "<group>"; };
 		6090F21B2A9E950E00DE39A8 /* SearchLocationViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchLocationViewModelTests.swift; sourceTree = "<group>"; };
 		6090F21D2A9E998800DE39A8 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		6090F21F2A9E9F5B00DE39A8 /* SearchLocationViewModel+Init.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SearchLocationViewModel+Init.swift"; sourceTree = "<group>"; };
+		6090F2212A9F315600DE39A8 /* SearchTableDataSourceDelegateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableDataSourceDelegateTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -173,6 +177,7 @@
 				606AF88B2A9CFC68002AE416 /* GetActualLocationWeatherTests.swift */,
 				606AF88F2A9D0B5D002AE416 /* MainViewModelTests.swift */,
 				6090F21B2A9E950E00DE39A8 /* SearchLocationViewModelTests.swift */,
+				6090F2212A9F315600DE39A8 /* SearchTableDataSourceDelegateTests.swift */,
 			);
 			path = weatherappTests;
 			sourceTree = "<group>";
@@ -222,6 +227,7 @@
 				6090F2132A9E8F1A00DE39A8 /* SearchLocationRequester.swift */,
 				6090F2192A9E939200DE39A8 /* SearchLocationViewModel.swift */,
 				6090F21D2A9E998800DE39A8 /* SearchViewController.swift */,
+				6090F21F2A9E9F5B00DE39A8 /* SearchLocationViewModel+Init.swift */,
 			);
 			path = SearchLocation;
 			sourceTree = "<group>";
@@ -389,6 +395,7 @@
 			files = (
 				606AF88E2A9D0755002AE416 /* MainViewModel.swift in Sources */,
 				6090F21A2A9E939200DE39A8 /* SearchLocationViewModel.swift in Sources */,
+				6090F2202A9E9F5B00DE39A8 /* SearchLocationViewModel+Init.swift in Sources */,
 				606AF8922A9D165E002AE416 /* MainViewModel+Init.swift in Sources */,
 				602549762A9B722E0013DDDE /* ViewController.swift in Sources */,
 				602549722A9B722E0013DDDE /* AppDelegate.swift in Sources */,
@@ -410,6 +417,7 @@
 			files = (
 				606AF88C2A9CFC68002AE416 /* GetActualLocationWeatherTests.swift in Sources */,
 				602549BC2A9BD42F0013DDDE /* LocationManagerWrapperTests.swift in Sources */,
+				6090F2222A9F315600DE39A8 /* SearchTableDataSourceDelegateTests.swift in Sources */,
 				606AF8902A9D0B5D002AE416 /* MainViewModelTests.swift in Sources */,
 				6090F21C2A9E950E00DE39A8 /* SearchLocationViewModelTests.swift in Sources */,
 			);

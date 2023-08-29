@@ -12,10 +12,18 @@ final class GetActualLocationWeatherTests: XCTestCase {
 
     func testFetch_onReceived_actualWeather() {
         let expectEventUpdate = expectation(description: #function)
+        let expectedWeatherInfo = WeatherInfo(
+            city: "city-name",
+            country: "any-country",
+            temperature: 47,
+            unit: .metric,
+            coordinate: .init(lat: 101, long: 202))
         let sut = GetActualLocationWeather(
             fetchLocation: { $0.locationUpdated(latitude: 101, longitude: 202) },
             lastLocation: { nil },
-            requestWeatherInfo: { coordinate, unit in  .init(name: "name", temperature: 47, unit: unit) })
+            requestWeatherInfo: { coordinate, unit in
+                .init(city: "city-name", country: "any-country", temperature: 47, unit: unit, coordinate: coordinate)
+            })
 
         var actualWeatherInfo: WeatherInfo?
         sut.eventUpdate = { event in
@@ -31,7 +39,7 @@ final class GetActualLocationWeatherTests: XCTestCase {
         sut.fetch(unit: .metric)
 
         wait(for: [expectEventUpdate])
-        XCTAssertEqual(actualWeatherInfo, .init(name: "name", temperature: 47, unit: .metric))
+        XCTAssertEqual(actualWeatherInfo, expectedWeatherInfo)
     }
 
     func testFetch_onReceived_unableToLocateUser() {
@@ -80,6 +88,12 @@ final class GetActualLocationWeatherTests: XCTestCase {
 
     func testFetch_onLocationExists() {
         let expectEventUpdate = expectation(description: #function)
+        let expectedWeatherInfo = WeatherInfo(
+            city: "city-name",
+            country: "any-country",
+            temperature: 47,
+            unit: .metric,
+            coordinate: .init(lat: 101, long: 202))
         var fetchLocationCalled = false
         let sut = GetActualLocationWeather(
             fetchLocation: {
@@ -87,7 +101,9 @@ final class GetActualLocationWeatherTests: XCTestCase {
                 return $0.locationUpdated(latitude: 101, longitude: 202)
             },
             lastLocation: { .init(lat: 101, long: 202) },
-            requestWeatherInfo: { coordinate, unit in  .init(name: "name", temperature: 47, unit: unit) })
+            requestWeatherInfo: { coordinate, unit in
+                .init(city: "city-name", country: "any-country", temperature: 47, unit: unit, coordinate: coordinate)
+            })
 
         var actualWeatherInfo: WeatherInfo?
         sut.eventUpdate = { event in
@@ -104,6 +120,6 @@ final class GetActualLocationWeatherTests: XCTestCase {
 
         wait(for: [expectEventUpdate])
         XCTAssertFalse(fetchLocationCalled)
-        XCTAssertEqual(actualWeatherInfo, .init(name: "name", temperature: 47, unit: .metric))
+        XCTAssertEqual(actualWeatherInfo, expectedWeatherInfo)
     }
 }

@@ -8,12 +8,6 @@
 import Foundation
 import Combine
 
-struct Location {
-    let name: String
-    let country: String
-    let coordinate: Coordinate
-}
-
 final class SearchLocationViewModel {
 
     private(set) var currentLocations: [Location] = [] {
@@ -21,6 +15,10 @@ final class SearchLocationViewModel {
             reloadDataSubject.send(())
         }
     }
+
+    private let searchTextSubject = PassthroughSubject<String, Never>()
+    private var task: Task<Void, Never>?
+    private var cancellable: AnyCancellable?
 
     private let reloadDataSubject = PassthroughSubject<Void, Never>()
     var reloadData: AnyPublisher<Void, Never> {
@@ -31,10 +29,19 @@ final class SearchLocationViewModel {
     private var getLocation: GetLocation
     init(getLocation: @escaping GetLocation) {
         self.getLocation = getLocation
+        cancellable = searchTextSubject.debounce(for: .seconds(1), scheduler: RunLoop.main)
+            .sink { [weak self] text in
+                self?.executeSearch(text)
+            }
     }
 
     func search(_ value: String) {
-        Task { [unowned self] in
+        searchTextSubject.send(value)
+    }
+
+    private func executeSearch(_ value: String) {
+        task?.cancel()
+        task = Task { [unowned self] in
             let locations = await getLocation(value)
             self.currentLocations = locations
         }

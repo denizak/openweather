@@ -16,7 +16,7 @@ final class MainViewModelTests: XCTestCase {
         subscribers = []
     }
 
-    func testViewAppear() {
+    func testViewLoad() {
         var actualTemperatureValue = ""
         var actualNameValue = ""
         var actualLoading: [Bool] = []
@@ -27,14 +27,22 @@ final class MainViewModelTests: XCTestCase {
         sut.name.sink(receiveValue: { value in actualNameValue = value }).store(in: &subscribers)
         sut.showLoading.sink(receiveValue: { value in actualLoading.append(value) }).store(in: &subscribers)
 
-        sut.viewAppear(selectedUnit: .imperial)
-        locationWeatherSpy.eventUpdate(.actualWeather(.init(name: "any-name", temperature: 77, unit: .metric)))
+        sut.viewLoad()
+        locationWeatherSpy.eventUpdate(
+            .actualWeather(
+                .init(city: "any-city",
+                      country: "any-country",
+                      temperature: 77,
+                      unit: .metric,
+                      coordinate: .init(lat: 11, long: 22))
+            )
+        )
 
         XCTAssertEqual(actualLoading, [true, false])
         XCTAssertEqual(actualTemperatureValue, "77.0")
-        XCTAssertEqual(actualNameValue, "any-name")
+        XCTAssertEqual(actualNameValue, "any-city")
         XCTAssertTrue(locationWeatherSpy.fetchCalled)
-        XCTAssertEqual(locationWeatherSpy.actualUnit, .imperial)
+        XCTAssertEqual(locationWeatherSpy.actualUnit, .metric)
     }
 
     func testEvent_unableToLocateUser() {
@@ -71,6 +79,18 @@ final class MainViewModelTests: XCTestCase {
         XCTAssertEqual(locationWeatherSpy.actualUnit, .imperial)
     }
 
+    func testUpdateLocation() {
+        let locationWeatherSpy = GetActualLocationWeatherSpy()
+        let sut = MainViewModel(getWeather: locationWeatherSpy)
+
+        sut.update(location: .init(city: "any-city", state: nil, country: "any-country", coordinate: .init(lat: 11, long: 22)),
+                   unit: .imperial)
+
+        XCTAssertTrue(locationWeatherSpy.fetchUnitCoordinateCalled)
+        XCTAssertEqual(locationWeatherSpy.actualUnit, .imperial)
+        XCTAssertEqual(locationWeatherSpy.actualCoordinate, .init(lat: 11, long: 22))
+    }
+
 }
 
 final class GetActualLocationWeatherSpy : GetActualLocationWeatherProtocol {
@@ -81,5 +101,13 @@ final class GetActualLocationWeatherSpy : GetActualLocationWeatherProtocol {
     func fetch(unit: Units) {
         fetchCalled = true
         actualUnit = unit
+    }
+
+    var actualCoordinate: Coordinate?
+    var fetchUnitCoordinateCalled = false
+    func fetch(unit: Units, coordinate: Coordinate?) {
+        fetchUnitCoordinateCalled = true
+        actualUnit = unit
+        actualCoordinate = coordinate
     }
 }

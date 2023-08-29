@@ -11,8 +11,17 @@ struct WeatherResponse: Decodable {
     struct Main: Decodable {
         let temp: Double
     }
-    
+    struct Sys: Decodable {
+        let country: String
+    }
+    struct Coord: Decodable {
+        let lat: Double
+        let lon: Double
+    }
+
     let main: Main
+    let sys: Sys
+    let coord: Coord
     let name: String
 }
 

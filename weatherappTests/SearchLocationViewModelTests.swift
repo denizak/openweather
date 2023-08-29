@@ -22,7 +22,7 @@ final class SearchLocationViewModelTests: XCTestCase {
         let sut = SearchLocationViewModel(
             getLocation: { value in
                 actualSearchText = value
-                return [.init(name: "any-name", country: "any-country", coordinate: .init(lat: 202, long: 303))]
+                return [.init(city: "any-city", state: "any-state", country: "any-country", coordinate: .init(lat: 202, long: 303))]
             })
         sut.reloadData.sink(receiveValue: { _ in
             expectLocations.fulfill()
@@ -33,7 +33,7 @@ final class SearchLocationViewModelTests: XCTestCase {
         wait(for: [expectLocations])
 
         let firstActualLocation = try XCTUnwrap(sut.currentLocations.first)
-        XCTAssertEqual(firstActualLocation.name, "any-name")
+        XCTAssertEqual(firstActualLocation.city, "any-city")
         XCTAssertEqual(actualSearchText, "any-location")
     }
 }

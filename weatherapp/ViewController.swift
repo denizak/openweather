@@ -96,11 +96,24 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithOpaqueBackground()
+        appearance.backgroundColor = .white
+        appearance.titleTextAttributes = [.font: UIFont.boldSystemFont(ofSize: 20.0),
+                                          .foregroundColor: UIColor.white]
+
+        navigationController?.navigationBar.tintColor = .systemBlue
+        navigationController?.navigationBar.standardAppearance = appearance
+        navigationController?.navigationBar.scrollEdgeAppearance = appearance
+
         setUpView()
         bindViewModel()
     }
     
     private func setUpView() {
+        let showSearchBar = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(showSeachView))
+        navigationItem.rightBarButtonItem = showSearchBar
+
         unitSelector.addTarget(self, action: #selector(unitValueChanged), for: .valueChanged)
         mainStack.addArrangedSubview(unitSelector)
         mainStack.addArrangedSubview(name)
@@ -160,6 +173,15 @@ class ViewController: UIViewController {
     @objc
     private func unitValueChanged(_ sender: UISegmentedControl) {
         viewModel.update(unit: sender.selectedUnit)
+    }
+
+    @objc
+    private func showSeachView(_ sender: UIBarButtonItem) {
+        let viewController = SearchViewController()
+        viewController.onSelectLocation = { location in
+
+        }
+        navigationController?.pushViewController(viewController, animated: true)
     }
 
     override func viewDidAppear(_ animated: Bool) {

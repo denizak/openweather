@@ -17,6 +17,7 @@ class ViewController: UIViewController {
         let stackView = UIStackView()
         stackView.axis = .vertical
         stackView.distribution = .fill
+        stackView.spacing = 10
         return stackView
     }()
 
@@ -32,6 +33,12 @@ class ViewController: UIViewController {
         label.font = .systemFont(ofSize: 58)
         label.textAlignment = .center
         return label
+    }()
+
+    private let unitSelector: UISegmentedControl = {
+        let segmentedControl = UISegmentedControl(items: ["C", "F"])
+        segmentedControl.selectedSegmentIndex = 0
+        return segmentedControl
     }()
     
     private let enableUserLocation: UIView = {
@@ -94,26 +101,30 @@ class ViewController: UIViewController {
     }
     
     private func setUpView() {
+        unitSelector.addTarget(self, action: #selector(unitValueChanged), for: .valueChanged)
+        mainStack.addArrangedSubview(unitSelector)
         mainStack.addArrangedSubview(name)
         mainStack.addArrangedSubview(temperature)
 
         view.addSubview(mainStack)
         mainStack.translatesAutoresizingMaskIntoConstraints = false
-        mainStack.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
-        mainStack.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        mainStack.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        mainStack.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10).isActive = true
+        mainStack.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10).isActive = true
+        mainStack.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10).isActive = true
         
         view.addSubview(enableUserLocation)
         enableUserLocation.translatesAutoresizingMaskIntoConstraints = false
         enableUserLocation.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
         enableUserLocation.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         enableUserLocation.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        enableUserLocation.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         
         view.addSubview(weatherUnavailable)
         weatherUnavailable.translatesAutoresizingMaskIntoConstraints = false
         weatherUnavailable.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
         weatherUnavailable.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         weatherUnavailable.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        weatherUnavailable.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         
         view.addSubview(loading)
         loading.translatesAutoresizingMaskIntoConstraints = false
@@ -146,10 +157,21 @@ class ViewController: UIViewController {
             .store(in: &subscribers)
     }
 
+    @objc
+    private func unitValueChanged(_ sender: UISegmentedControl) {
+        viewModel.update(unit: sender.selectedUnit)
+    }
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
         viewModel.viewAppear()
+    }
+}
+
+private extension UISegmentedControl {
+    var selectedUnit: Units {
+        selectedSegmentIndex == 0 ? .metric : .imperial
     }
 }
 

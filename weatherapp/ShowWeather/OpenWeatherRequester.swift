@@ -17,8 +17,6 @@ struct WeatherResponse: Decodable {
 }
 
 struct OpenWeatherRequester {
-    private let host = "api.openweathermap.org"
-    private let appid = "8873455a2cc5af0232f9657dc50c4083"
     private let decoder = JSONDecoder()
 
     func getWeather(coordinate: Coordinate, unit: Units = .metric) async throws -> WeatherResponse? {
@@ -26,25 +24,13 @@ struct OpenWeatherRequester {
         let params = [
             "lat": "\(coordinate.lat)",
             "lon": "\(coordinate.long)",
-            "units": unit.rawValue,
-            "appid": appid
+            "units": unit.rawValue
         ]
-        if let url = makeURL(path: path, params: params) {
+        if let url = API.makeURL(path: path, params: params) {
             let (data, _) = try await URLSession.shared.data(from: url)
             return try decoder.decode(WeatherResponse.self, from: data)
         } else {
             return nil
         }
-    }
-    
-    private func makeURL(path: String, params: [String: String]) -> URL? {
-        var urlComponents = URLComponents()
-        urlComponents.scheme = "https"
-        urlComponents.host = host
-        urlComponents.path = path
-        urlComponents.queryItems = params.map { key, value in
-            URLQueryItem(name: key, value: value)
-        }
-        return urlComponents.url
     }
 }

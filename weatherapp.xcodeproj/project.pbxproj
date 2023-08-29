@@ -26,6 +26,9 @@
 		606AF88E2A9D0755002AE416 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606AF88D2A9D0755002AE416 /* MainViewModel.swift */; };
 		606AF8902A9D0B5D002AE416 /* MainViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606AF88F2A9D0B5D002AE416 /* MainViewModelTests.swift */; };
 		606AF8922A9D165E002AE416 /* MainViewModel+Init.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606AF8912A9D165E002AE416 /* MainViewModel+Init.swift */; };
+		6090F2142A9E8F1A00DE39A8 /* SearchLocationRequester.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6090F2132A9E8F1A00DE39A8 /* SearchLocationRequester.swift */; };
+		6090F2162A9E8F8900DE39A8 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6090F2152A9E8F8900DE39A8 /* API.swift */; };
+		6090F2182A9E912700DE39A8 /* SearchLocationRequesterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6090F2172A9E912700DE39A8 /* SearchLocationRequesterTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,6 +81,9 @@
 		606AF88D2A9D0755002AE416 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		606AF88F2A9D0B5D002AE416 /* MainViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModelTests.swift; sourceTree = "<group>"; };
 		606AF8912A9D165E002AE416 /* MainViewModel+Init.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainViewModel+Init.swift"; sourceTree = "<group>"; };
+		6090F2132A9E8F1A00DE39A8 /* SearchLocationRequester.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchLocationRequester.swift; sourceTree = "<group>"; };
+		6090F2152A9E8F8900DE39A8 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
+		6090F2172A9E912700DE39A8 /* SearchLocationRequesterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchLocationRequesterTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,6 +146,8 @@
 		602549702A9B722E0013DDDE /* weatherapp */ = {
 			isa = PBXGroup;
 			children = (
+				6090F2152A9E8F8900DE39A8 /* API.swift */,
+				6090F2122A9E8F0400DE39A8 /* SearchLocation */,
 				602549B32A9B85F40013DDDE /* ShowWeather */,
 				602549712A9B722E0013DDDE /* AppDelegate.swift */,
 				602549732A9B722E0013DDDE /* SceneDelegate.swift */,
@@ -174,6 +182,7 @@
 			isa = PBXGroup;
 			children = (
 				602549B12A9B77BC0013DDDE /* OpenWeatherRequesterTests.swift */,
+				6090F2172A9E912700DE39A8 /* SearchLocationRequesterTests.swift */,
 			);
 			path = weatherappIntegrationTests;
 			sourceTree = "<group>";
@@ -198,6 +207,14 @@
 				602549B52A9B8A150013DDDE /* CoreLocation.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		6090F2122A9E8F0400DE39A8 /* SearchLocation */ = {
+			isa = PBXGroup;
+			children = (
+				6090F2132A9E8F1A00DE39A8 /* SearchLocationRequester.swift */,
+			);
+			path = SearchLocation;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -365,6 +382,8 @@
 				606AF8922A9D165E002AE416 /* MainViewModel+Init.swift in Sources */,
 				602549762A9B722E0013DDDE /* ViewController.swift in Sources */,
 				602549722A9B722E0013DDDE /* AppDelegate.swift in Sources */,
+				6090F2162A9E8F8900DE39A8 /* API.swift in Sources */,
+				6090F2142A9E8F1A00DE39A8 /* SearchLocationRequester.swift in Sources */,
 				602549B82A9B8A3D0013DDDE /* LocationManagerWrapper.swift in Sources */,
 				602549742A9B722E0013DDDE /* SceneDelegate.swift in Sources */,
 				606AF88A2A9CF6F5002AE416 /* GetActualLocationWeather+Init.swift in Sources */,
@@ -397,6 +416,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				602549B22A9B77BC0013DDDE /* OpenWeatherRequesterTests.swift in Sources */,
+				6090F2182A9E912700DE39A8 /* SearchLocationRequesterTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

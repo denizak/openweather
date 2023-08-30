@@ -111,6 +111,7 @@ class ViewController: UIViewController {
     
     private func setUpView() {
         let showSearchBar = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(showSeachView))
+        showSearchBar.accessibilityIdentifier = "search_city"
         navigationItem.rightBarButtonItem = showSearchBar
 
         unitSelector.addTarget(self, action: #selector(unitValueChanged), for: .valueChanged)

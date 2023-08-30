@@ -30,6 +30,7 @@ final class SearchViewController: UIViewController {
 
     private let searchBar: UISearchBar = {
         let searchBar = UISearchBar(frame: .zero)
+        searchBar.accessibilityIdentifier = "search_field"
         return searchBar
     }()
 

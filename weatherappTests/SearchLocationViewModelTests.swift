@@ -36,4 +36,10 @@ final class SearchLocationViewModelTests: XCTestCase {
         XCTAssertEqual(firstActualLocation.city, "any-city")
         XCTAssertEqual(actualSearchText, "any-location")
     }
+
+    func testLeak() {
+        let sut = SearchLocationViewModel(getLocation: { _ in [] })
+
+        testMemoryLeak(sut)
+    }
 }

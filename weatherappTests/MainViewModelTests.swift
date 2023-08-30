@@ -91,6 +91,12 @@ final class MainViewModelTests: XCTestCase {
         XCTAssertEqual(locationWeatherSpy.actualCoordinate, .init(lat: 11, long: 22))
     }
 
+    func testLeak() {
+        let sut = MainViewModel(getWeather: GetActualLocationWeatherSpy())
+
+        testMemoryLeak(sut)
+    }
+
 }
 
 private final class GetActualLocationWeatherSpy : GetLocationWeatherProtocol {

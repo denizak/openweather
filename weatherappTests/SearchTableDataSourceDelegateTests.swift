@@ -49,6 +49,12 @@ final class SearchTableDataSourceDelegateTests: XCTestCase {
         XCTAssertEqual(actualSelectedRow, 0)
     }
 
+    func testLeak() {
+        let sut = makeSUT()
+
+        testMemoryLeak(sut)
+    }
+
     private func makeSUT() -> SearchTableDataSourceDelegate {
         SearchTableDataSourceDelegate(getLocations: {
             [

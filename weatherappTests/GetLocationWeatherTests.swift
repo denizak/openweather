@@ -53,6 +53,7 @@ final class GetLocationWeatherTests: XCTestCase {
     }
     
     func testFetch_onReceived_getWeatherError() {
+        let expectEventUpdate = expectation(description: #function)
         let sut =  GetLocationWeather(
             requestWeatherInfo: { _, _ in throw GetWeatherEvent.WeatherError.missingData },
             getActualLocationWeather: GetActualLocationWeatherDummy())
@@ -64,11 +65,22 @@ final class GetLocationWeatherTests: XCTestCase {
             } else {
                 XCTFail("should receive .getWeatherError")
             }
+
+            expectEventUpdate.fulfill()
         }
 
         sut.fetch(unit: .metric, coordinate: .init(lat: 1, long: 1))
 
+        wait(for: [expectEventUpdate])
         XCTAssertEqual(actualWeatherError, .missingData)
+    }
+
+    func testLeak() {
+        let sut =  GetLocationWeather(
+            requestWeatherInfo: { _, _ in nil },
+            getActualLocationWeather: GetActualLocationWeatherDummy())
+
+        testMemoryLeak(sut)
     }
 }
 

@@ -122,4 +122,13 @@ final class GetActualLocationWeatherTests: XCTestCase {
         XCTAssertFalse(fetchLocationCalled)
         XCTAssertEqual(actualWeatherInfo, expectedWeatherInfo)
     }
+
+    func testLeak() {
+        let sut = GetActualLocationWeather(
+            fetchLocation: { _ in },
+            lastLocation: { nil },
+            requestWeatherInfo: { _, _ in nil })
+
+        testMemoryLeak(sut)
+    }
 }

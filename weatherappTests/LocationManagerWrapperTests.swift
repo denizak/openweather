@@ -104,6 +104,12 @@ final class LocationManagerWrapperTests: XCTestCase {
         XCTAssertTrue(locationManager.requestLocationCalled)
     }
 
+    func testLeak() {
+        let sut = LocationManagerWrapper()
+
+        testMemoryLeak(sut)
+    }
+
     private func makeSUT(status: CLAuthorizationStatus = .notDetermined) -> (LocationManagerWrapper, LocationManagerSpy) {
         let locationManager = LocationManagerSpy()
         locationManager.authorizationStatusStubbed = status

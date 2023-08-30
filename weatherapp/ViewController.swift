@@ -96,20 +96,17 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let appearance = UINavigationBarAppearance()
-        appearance.configureWithOpaqueBackground()
-        appearance.backgroundColor = .white
-        appearance.titleTextAttributes = [.font: UIFont.boldSystemFont(ofSize: 20.0),
-                                          .foregroundColor: UIColor.white]
-
-        navigationController?.navigationBar.tintColor = .systemBlue
-        navigationController?.navigationBar.standardAppearance = appearance
-        navigationController?.navigationBar.scrollEdgeAppearance = appearance
-
         setUpView()
         bindViewModel()
 
         viewModel.viewLoad()
+    }
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        let backgroundColor: UIColor = UITraitCollection.current.userInterfaceStyle == .dark ? .black : .white
+        self.navigationController?.navigationBar.backgroundColor = backgroundColor
+        self.view.backgroundColor = backgroundColor
     }
     
     private func setUpView() {

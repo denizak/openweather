@@ -67,6 +67,18 @@ final class SearchViewController: UIViewController {
         }
 
         searchBar.delegate = self
+        updateBackgroundColor()
+    }
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        updateBackgroundColor()
+    }
+    
+    private func updateBackgroundColor() {
+        let backgroundColor: UIColor = UITraitCollection.current.userInterfaceStyle == .dark ? .black : .white
+        self.navigationController?.navigationBar.backgroundColor = backgroundColor
+        self.view.backgroundColor = backgroundColor
     }
 }
 

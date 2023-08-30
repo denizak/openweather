@@ -248,9 +248,9 @@
 		6090F2122A9E8F0400DE39A8 /* SearchLocation */ = {
 			isa = PBXGroup;
 			children = (
+				6090F21D2A9E998800DE39A8 /* SearchViewController.swift */,
 				6090F2132A9E8F1A00DE39A8 /* SearchLocationRequester.swift */,
 				6090F2192A9E939200DE39A8 /* SearchLocationViewModel.swift */,
-				6090F21D2A9E998800DE39A8 /* SearchViewController.swift */,
 				6090F21F2A9E9F5B00DE39A8 /* SearchLocationViewModel+Init.swift */,
 			);
 			path = SearchLocation;

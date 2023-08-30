@@ -36,7 +36,7 @@ final class GetActualLocationWeatherTests: XCTestCase {
             expectEventUpdate.fulfill()
         }
 
-        sut.fetch(unit: .metric)
+        sut.fetch(unit: .metric, coordinate: nil)
 
         wait(for: [expectEventUpdate])
         XCTAssertEqual(actualWeatherInfo, expectedWeatherInfo)
@@ -57,7 +57,7 @@ final class GetActualLocationWeatherTests: XCTestCase {
             }
         }
 
-        sut.fetch(unit: .metric)
+        sut.fetch(unit: .metric, coordinate: nil)
 
         XCTAssertEqual(actualEvent, .unableToLocateUser)
     }
@@ -80,7 +80,7 @@ final class GetActualLocationWeatherTests: XCTestCase {
             expectEventUpdate.fulfill()
         }
 
-        sut.fetch(unit: .metric)
+        sut.fetch(unit: .metric, coordinate: nil)
 
         wait(for: [expectEventUpdate])
         XCTAssertEqual(actualWeatherError, .missingData)
@@ -116,7 +116,7 @@ final class GetActualLocationWeatherTests: XCTestCase {
             expectEventUpdate.fulfill()
         }
 
-        sut.fetch(unit: .metric)
+        sut.fetch(unit: .metric, coordinate: nil)
 
         wait(for: [expectEventUpdate])
         XCTAssertFalse(fetchLocationCalled)

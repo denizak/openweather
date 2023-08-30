@@ -24,7 +24,7 @@ final class MainViewModelTests: XCTestCase {
         let locationWeatherSpy = GetActualLocationWeatherSpy()
         let sut = MainViewModel(getWeather: locationWeatherSpy)
         sut.temperature.sink(receiveValue: { value in actualTemperatureValue = value }).store(in: &subscribers)
-        sut.name.sink(receiveValue: { value in actualNameValue = value }).store(in: &subscribers)
+        sut.city.sink(receiveValue: { value in actualNameValue = value }).store(in: &subscribers)
         sut.showLoading.sink(receiveValue: { value in actualLoading.append(value) }).store(in: &subscribers)
 
         sut.viewLoad()
@@ -41,7 +41,7 @@ final class MainViewModelTests: XCTestCase {
         XCTAssertEqual(actualLoading, [true, false])
         XCTAssertEqual(actualTemperatureValue, "77.0")
         XCTAssertEqual(actualNameValue, "any-city")
-        XCTAssertTrue(locationWeatherSpy.fetchCalled)
+        XCTAssertTrue(locationWeatherSpy.fetchUnitCoordinateCalled)
         XCTAssertEqual(locationWeatherSpy.actualUnit, .metric)
     }
 
@@ -75,7 +75,7 @@ final class MainViewModelTests: XCTestCase {
 
         sut.update(unit: .imperial)
 
-        XCTAssertTrue(locationWeatherSpy.fetchCalled)
+        XCTAssertTrue(locationWeatherSpy.fetchUnitCoordinateCalled)
         XCTAssertEqual(locationWeatherSpy.actualUnit, .imperial)
     }
 
@@ -93,16 +93,10 @@ final class MainViewModelTests: XCTestCase {
 
 }
 
-final class GetActualLocationWeatherSpy : GetActualLocationWeatherProtocol {
+private final class GetActualLocationWeatherSpy : GetLocationWeatherProtocol {
     var eventUpdate: (GetWeatherEvent) -> Void = { _ in }
 
     var actualUnit: Units?
-    var fetchCalled = false
-    func fetch(unit: Units) {
-        fetchCalled = true
-        actualUnit = unit
-    }
-
     var actualCoordinate: Coordinate?
     var fetchUnitCoordinateCalled = false
     func fetch(unit: Units, coordinate: Coordinate?) {

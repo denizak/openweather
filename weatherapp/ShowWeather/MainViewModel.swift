@@ -16,7 +16,7 @@ final class MainViewModel {
     }
 
     private let citySubject = PassthroughSubject<String, Never>()
-    var name: AnyPublisher<String, Never> {
+    var city: AnyPublisher<String, Never> {
         citySubject.eraseToAnyPublisher()
     }
 
@@ -38,8 +38,8 @@ final class MainViewModel {
     private var location: Location?
     private var unit: Units = .metric
 
-    private var getWeather: GetActualLocationWeatherProtocol
-    init(getWeather: GetActualLocationWeatherProtocol) {
+    private var getWeather: GetLocationWeatherProtocol
+    init(getWeather: GetLocationWeatherProtocol) {
         self.getWeather = getWeather
         self.getWeather.eventUpdate = { [weak self] event in
             var showEnableLocationPermission = false
@@ -80,12 +80,7 @@ final class MainViewModel {
 
     private func updateWeather() {
         showLoadingSubject.send(true)
-        if let coordinate = location?.coordinate {
-            getWeather.fetch(unit: unit, coordinate: coordinate)
-        } else {
-            getWeather.fetch(unit: unit)
-        }
-
+        getWeather.fetch(unit: unit, coordinate: location?.coordinate)
     }
 }
 

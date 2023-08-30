@@ -20,6 +20,14 @@
 		602549B82A9B8A3D0013DDDE /* LocationManagerWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602549B72A9B8A3D0013DDDE /* LocationManagerWrapper.swift */; };
 		602549BA2A9BD08D0013DDDE /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602549B92A9BD08D0013DDDE /* LocationManager.swift */; };
 		602549BC2A9BD42F0013DDDE /* LocationManagerWrapperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602549BB2A9BD42F0013DDDE /* LocationManagerWrapperTests.swift */; };
+		604E4F7C2A9F69A000C5A069 /* GetLocationWeather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 604E4F7B2A9F69A000C5A069 /* GetLocationWeather.swift */; };
+		604E4F7E2A9F716C00C5A069 /* GetLocationWeather+Init.swift in Sources */ = {isa = PBXBuildFile; fileRef = 604E4F7D2A9F716C00C5A069 /* GetLocationWeather+Init.swift */; };
+		604E4F802A9F719800C5A069 /* WeatherInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 604E4F7F2A9F719800C5A069 /* WeatherInfo.swift */; };
+		604E4F822A9F71B100C5A069 /* Coordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 604E4F812A9F71B100C5A069 /* Coordinate.swift */; };
+		604E4F842A9F71CE00C5A069 /* Units.swift in Sources */ = {isa = PBXBuildFile; fileRef = 604E4F832A9F71CE00C5A069 /* Units.swift */; };
+		604E4F862A9F71FE00C5A069 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 604E4F852A9F71FE00C5A069 /* Location.swift */; };
+		604E4F882A9F721B00C5A069 /* GetWeatherEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 604E4F872A9F721B00C5A069 /* GetWeatherEvent.swift */; };
+		604E4F8A2A9F74FD00C5A069 /* GetLocationWeatherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 604E4F892A9F74FC00C5A069 /* GetLocationWeatherTests.swift */; };
 		606AF8882A9CEBC2002AE416 /* GetActualLocationWeather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606AF8872A9CEBC2002AE416 /* GetActualLocationWeather.swift */; };
 		606AF88A2A9CF6F5002AE416 /* GetActualLocationWeather+Init.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606AF8892A9CF6F5002AE416 /* GetActualLocationWeather+Init.swift */; };
 		606AF88C2A9CFC68002AE416 /* GetActualLocationWeatherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606AF88B2A9CFC68002AE416 /* GetActualLocationWeatherTests.swift */; };
@@ -80,6 +88,14 @@
 		602549B72A9B8A3D0013DDDE /* LocationManagerWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManagerWrapper.swift; sourceTree = "<group>"; };
 		602549B92A9BD08D0013DDDE /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		602549BB2A9BD42F0013DDDE /* LocationManagerWrapperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManagerWrapperTests.swift; sourceTree = "<group>"; };
+		604E4F7B2A9F69A000C5A069 /* GetLocationWeather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetLocationWeather.swift; sourceTree = "<group>"; };
+		604E4F7D2A9F716C00C5A069 /* GetLocationWeather+Init.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GetLocationWeather+Init.swift"; sourceTree = "<group>"; };
+		604E4F7F2A9F719800C5A069 /* WeatherInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherInfo.swift; sourceTree = "<group>"; };
+		604E4F812A9F71B100C5A069 /* Coordinate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinate.swift; sourceTree = "<group>"; };
+		604E4F832A9F71CE00C5A069 /* Units.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Units.swift; sourceTree = "<group>"; };
+		604E4F852A9F71FE00C5A069 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
+		604E4F872A9F721B00C5A069 /* GetWeatherEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetWeatherEvent.swift; sourceTree = "<group>"; };
+		604E4F892A9F74FC00C5A069 /* GetLocationWeatherTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetLocationWeatherTests.swift; sourceTree = "<group>"; };
 		606AF8872A9CEBC2002AE416 /* GetActualLocationWeather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetActualLocationWeather.swift; sourceTree = "<group>"; };
 		606AF8892A9CF6F5002AE416 /* GetActualLocationWeather+Init.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GetActualLocationWeather+Init.swift"; sourceTree = "<group>"; };
 		606AF88B2A9CFC68002AE416 /* GetActualLocationWeatherTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetActualLocationWeatherTests.swift; sourceTree = "<group>"; };
@@ -175,6 +191,7 @@
 			children = (
 				602549BB2A9BD42F0013DDDE /* LocationManagerWrapperTests.swift */,
 				606AF88B2A9CFC68002AE416 /* GetActualLocationWeatherTests.swift */,
+				604E4F892A9F74FC00C5A069 /* GetLocationWeatherTests.swift */,
 				606AF88F2A9D0B5D002AE416 /* MainViewModelTests.swift */,
 				6090F21B2A9E950E00DE39A8 /* SearchLocationViewModelTests.swift */,
 				6090F2212A9F315600DE39A8 /* SearchTableDataSourceDelegateTests.swift */,
@@ -202,13 +219,20 @@
 		602549B32A9B85F40013DDDE /* ShowWeather */ = {
 			isa = PBXGroup;
 			children = (
+				604E4F812A9F71B100C5A069 /* Coordinate.swift */,
+				604E4F872A9F721B00C5A069 /* GetWeatherEvent.swift */,
 				602549AF2A9B77900013DDDE /* OpenWeatherRequester.swift */,
-				602549B72A9B8A3D0013DDDE /* LocationManagerWrapper.swift */,
-				602549B92A9BD08D0013DDDE /* LocationManager.swift */,
 				606AF8872A9CEBC2002AE416 /* GetActualLocationWeather.swift */,
 				606AF8892A9CF6F5002AE416 /* GetActualLocationWeather+Init.swift */,
+				604E4F7B2A9F69A000C5A069 /* GetLocationWeather.swift */,
+				604E4F7D2A9F716C00C5A069 /* GetLocationWeather+Init.swift */,
+				604E4F852A9F71FE00C5A069 /* Location.swift */,
+				602549B92A9BD08D0013DDDE /* LocationManager.swift */,
+				602549B72A9B8A3D0013DDDE /* LocationManagerWrapper.swift */,
 				606AF88D2A9D0755002AE416 /* MainViewModel.swift */,
 				606AF8912A9D165E002AE416 /* MainViewModel+Init.swift */,
+				604E4F832A9F71CE00C5A069 /* Units.swift */,
+				604E4F7F2A9F719800C5A069 /* WeatherInfo.swift */,
 			);
 			path = ShowWeather;
 			sourceTree = "<group>";
@@ -401,12 +425,19 @@
 				602549722A9B722E0013DDDE /* AppDelegate.swift in Sources */,
 				6090F2162A9E8F8900DE39A8 /* API.swift in Sources */,
 				6090F2142A9E8F1A00DE39A8 /* SearchLocationRequester.swift in Sources */,
+				604E4F802A9F719800C5A069 /* WeatherInfo.swift in Sources */,
+				604E4F822A9F71B100C5A069 /* Coordinate.swift in Sources */,
 				602549B82A9B8A3D0013DDDE /* LocationManagerWrapper.swift in Sources */,
+				604E4F7E2A9F716C00C5A069 /* GetLocationWeather+Init.swift in Sources */,
 				6090F21E2A9E998800DE39A8 /* SearchViewController.swift in Sources */,
+				604E4F862A9F71FE00C5A069 /* Location.swift in Sources */,
+				604E4F842A9F71CE00C5A069 /* Units.swift in Sources */,
 				602549742A9B722E0013DDDE /* SceneDelegate.swift in Sources */,
 				606AF88A2A9CF6F5002AE416 /* GetActualLocationWeather+Init.swift in Sources */,
+				604E4F7C2A9F69A000C5A069 /* GetLocationWeather.swift in Sources */,
 				606AF8882A9CEBC2002AE416 /* GetActualLocationWeather.swift in Sources */,
 				602549BA2A9BD08D0013DDDE /* LocationManager.swift in Sources */,
+				604E4F882A9F721B00C5A069 /* GetWeatherEvent.swift in Sources */,
 				602549B02A9B77900013DDDE /* OpenWeatherRequester.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -419,6 +450,7 @@
 				602549BC2A9BD42F0013DDDE /* LocationManagerWrapperTests.swift in Sources */,
 				6090F2222A9F315600DE39A8 /* SearchTableDataSourceDelegateTests.swift in Sources */,
 				606AF8902A9D0B5D002AE416 /* MainViewModelTests.swift in Sources */,
+				604E4F8A2A9F74FD00C5A069 /* GetLocationWeatherTests.swift in Sources */,
 				6090F21C2A9E950E00DE39A8 /* SearchLocationViewModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

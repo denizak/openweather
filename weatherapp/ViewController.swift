@@ -21,7 +21,7 @@ class ViewController: UIViewController {
         return stackView
     }()
 
-    private let name: UILabel = {
+    private let city: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 27)
         label.textAlignment = .center
@@ -118,7 +118,7 @@ class ViewController: UIViewController {
 
         unitSelector.addTarget(self, action: #selector(unitValueChanged), for: .valueChanged)
         mainStack.addArrangedSubview(unitSelector)
-        mainStack.addArrangedSubview(name)
+        mainStack.addArrangedSubview(city)
         mainStack.addArrangedSubview(temperature)
 
         view.addSubview(mainStack)
@@ -150,9 +150,9 @@ class ViewController: UIViewController {
     }
     
     private func bindViewModel() {
-        viewModel.name.receive(on: DispatchQueue.main)
+        viewModel.city.receive(on: DispatchQueue.main)
             .map { Optional($0) }
-            .assign(to: \.text, on: name)
+            .assign(to: \.text, on: city)
             .store(in: &subscribers)
         viewModel.temperature.receive(on: DispatchQueue.main)
             .map { Optional($0) }

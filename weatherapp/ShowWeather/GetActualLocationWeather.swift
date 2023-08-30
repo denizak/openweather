@@ -7,13 +7,7 @@
 
 import Foundation
 
-protocol GetActualLocationWeatherProtocol {
-    var eventUpdate: (GetWeatherEvent) -> Void { get set }
-    func fetch(unit: Units)
-    func fetch(unit: Units, coordinate: Coordinate?)
-}
-
-final class GetActualLocationWeather: GetActualLocationWeatherProtocol {
+final class GetActualLocationWeather: GetLocationWeatherProtocol {
     var eventUpdate: (GetWeatherEvent) -> Void = { _ in }
 
     private var unit: Units = .metric
@@ -30,14 +24,10 @@ final class GetActualLocationWeather: GetActualLocationWeatherProtocol {
         self.requestWeatherInfo = requestWeatherInfo
     }
 
-    func fetch(unit: Units) {
-        fetch(unit: unit, coordinate: nil)
-    }
-
-    func fetch(unit: Units, coordinate: Coordinate?) {
+    func fetch(unit: Units, coordinate _: Coordinate?) {
         self.unit = unit
 
-        let weatherLocation = coordinate ?? lastLocation()
+        let weatherLocation = lastLocation()
         if let location = weatherLocation {
             requestWeatherInfo(coordinate: location, unit: unit)
         } else {
@@ -70,48 +60,4 @@ extension GetActualLocationWeather: LocationEvent {
         eventUpdate(.unableToLocateUser)
         print(error)
     }
-}
-
-struct WeatherInfo: Equatable {
-    let city: String
-    let country: String
-    let temperature: Double
-    let unit: Units
-    let coordinate: Coordinate
-}
-
-enum GetWeatherEvent: Equatable {
-    enum WeatherError: Error {
-        case missingData
-    }
-
-    case actualWeather(WeatherInfo)
-    case unableToLocateUser
-    case getWeatherError(WeatherError)
-}
-
-struct Coordinate: Equatable {
-    let lat: Double
-    let long: Double
-}
-
-enum Units: String {
-    case metric
-    case imperial
-}
-
-enum LocationError {
-    case userDeniedLocationService
-}
-
-protocol LocationEvent: AnyObject {
-    func locationUpdated(latitude: Double, longitude: Double)
-    func locationError(error: LocationError)
-}
-
-struct Location {
-    let city: String
-    let state: String?
-    let country: String
-    let coordinate: Coordinate
 }

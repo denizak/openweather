@@ -9,6 +9,6 @@ import Foundation
 
 extension MainViewModel {
     static func make() -> MainViewModel {
-        .init(getWeather: GetActualLocationWeather.make())
+        .init(getWeather: GetLocationWeather.make())
     }
 }

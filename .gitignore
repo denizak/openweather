@@ -2,3 +2,6 @@ DerivedData
 .DS_Store
 weatherapp.xcodeproj/xcuserdata/denizakya.xcuserdatad/xcdebugger/Breakpoints_v2.xcbkptlist
 weatherapp.xcodeproj/project.xcworkspace/xcuserdata/denizakya.xcuserdatad/UserInterfaceState.xcuserstate
+build/Release-iphoneos
+build/XCBuildData
+build/weatherapp.build
